@@ -7,7 +7,6 @@ import (
 	"io"
 	"net/http"
 	"log"
-	"time"
 	"os"
 	"encoding/json"
 )
@@ -26,7 +25,7 @@ func handler(w http.ResponseWriter, req *http.Request) {
 	req.ParseForm()
 	content, found := req.Form["content"]
 
-	fmt.Println(time.Now(), " found:", found)
+	//fmt.Println(time.Now(), " found:", found)
 
 	res := response{1, "", ""}
 
