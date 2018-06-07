@@ -24,6 +24,7 @@ func handler(w http.ResponseWriter, req *http.Request) {
 	//获取客户端通过GET/POST方式传递的参数
 	req.ParseForm()
 	content, found := req.Form["content"]
+	_, deep_search_found := req.Form["deep_search"]
 
 	//fmt.Println(time.Now(), " found:", found)
 
@@ -36,7 +37,11 @@ func handler(w http.ResponseWriter, req *http.Request) {
 		} else {
 			var text []byte = []byte(content[0])
 			segments := segmenter.Segment(text)
-			res.Response = sego.SegmentsToString(segments, false)
+			if deep_search_found {
+				res.Response = sego.SegmentsToString(segments, true)
+			} else {
+				res.Response = sego.SegmentsToString(segments, false)
+			}
 		}
 	} else {
 		res.Status = 0
