@@ -33,7 +33,55 @@ go build
 
 样例
 ```shell
-/go-segment-path/go-segment {8787
+/go-segment-path/go-segment 8787
+
+### 守护进程
+可以用 supervisor 等进程管理工具挂起 
 ```
 
+
+## 提供接口(HTTP)
+### 接口地址
+-X POST http://127.0.0.1:{port}/segment
+### 请求参数
+| 参数 | 可选| 类型 | 说明 |
+|:--- |:---|:--- |:--- |
+| content |必选| string| 需要分词的字符串，最大允许 10000 长度的字符串 |
+| deep_search | 可选 | int| 是否进行深度分词，注意：有此参数就会进行深度分词，无论什么值|
+
+
+### 响应结果
+| 参数 |  类型 | 说明 |
+|:--- |:--- |:--- |
+| Status | int| 分词结果，1：成功，0：失败 |
+| Msg |  string| 返回的相关信息|
+| Response |  string| 分词结果|
+
+#### 分词结果格式说明
+1.每组分词以空格隔开
+2.每组分词以：词 + 斜杠 + 词性组成
+
+
+#### 成功实例
+```json
+{
+	"Status": 1,
+	"Msg": "",
+	"Response": "测试/vn  /x 九/m 华山/ns 九华山/ns 龙泉/nz 寺庙/n "
+}
+```
+
+#### 失败实例
+```json
+{
+	"Status": 0,
+	"Msg": "超过最大处理内容长度",
+	"Response": ""
+}
+```
+
+#### 请求实例 CURL 命令
+```shell
+curl -X POST "http://127.0.0.1:8787/segment" --data "deep_search=w&content=华 山龙泉寺庙测试"
+```
 
