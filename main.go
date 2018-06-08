@@ -9,6 +9,7 @@ import (
 	"log"
 	"os"
 	"encoding/json"
+	"runtime"
 )
 
 var segmenter sego.Segmenter
@@ -59,6 +60,10 @@ func handler(w http.ResponseWriter, req *http.Request) {
 }
 
 func main() {
+	// 将线程数设置为CPU数
+	runtime.GOMAXPROCS(runtime.NumCPU())
+
+	fmt.Println("run with ", runtime.NumCPU(), " cores");
 	var port string;
 	if len(os.Args) >= 2 {
 		port = os.Args[1]
