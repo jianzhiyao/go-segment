@@ -34,10 +34,10 @@ go build
 样例
 ```shell
 /go-segment-path/go-segment 8787
-
-### 守护进程
-可以用 supervisor 等进程管理工具挂起 
 ```
+
+### 守护进程（deamon）
+可以用 supervisor 等进程管理工具挂起 
 
 
 ## 提供接口(HTTP)
