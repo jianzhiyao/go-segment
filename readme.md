@@ -84,7 +84,3 @@ go build
 ```shell
 curl -X POST "http://127.0.0.1:8787/segment" --data "deep_search=w&content=华 山龙泉寺庙测试"
 ```
-
-
-# GO 分词服务
-[项目地址](http://git.linghit.com:666/qy/go-segment)
