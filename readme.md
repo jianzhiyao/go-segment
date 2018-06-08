@@ -16,9 +16,9 @@
 具体百度
 
 ### 安装 Sego 命令
-    ```shell
-    go get -u github.com/huichen/sego
-    ```    
+```shell
+go get -u github.com/huichen/sego
+```    
 
 ### 编译项目
 编译项目可以编译出当前系统的可执行文件，这里以 Linux 系统为例
@@ -85,3 +85,6 @@ go build
 curl -X POST "http://127.0.0.1:8787/segment" --data "deep_search=w&content=华 山龙泉寺庙测试"
 ```
 
+
+# GO 分词服务
+[项目地址](http://git.linghit.com:666/qy/go-segment)
